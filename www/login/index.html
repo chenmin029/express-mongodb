@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<h1>this is login page</h1>
+		<!-- <form method="post" action="http://localhost:8989/submit">
+			<input type="text" name="user" placeholder="请输入用户名"><br><br>
+			<input type="password" name="password" placeholder="请输入密码">
+			<input type="submit">
+		</form> -->
+		<!-- 如果只是修改了前端页面，不需要重启服务器 -->
+		<input type="text" name="user" placeholder="请输入用户名"><br><br>
+		<input type="password" name="password" placeholder="请输入密码">
+		<input type="submit">
+		<a href="http://localhost:8989/sign">请注册</a>
+		<script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+		<script type="text/javascript">
+			// 使用了Ajax 就不要使用form
+			$('input[type="submit"]').click(()=>{
+				$.ajax({
+					url:'http://localhost:8989/find',
+					method:'get',
+					data:{
+						user:$('input').eq(0).val(),
+						pass:$('input').eq(1).val()
+					},
+					success:(res)=>{
+						// 此处接收的是后台发送过来的数据
+						console.log(res);
+						if(res){
+							// 页面跳转
+							// location.href="http://localhost:8989/music/index.html"
+
+						}
+					}
+				})
+			})
+		</script>
+	</body>
+</html>
+
+<!-- 
+	输入用户名和密码
+	经过后台处理以后再返回给前台
+ -->
